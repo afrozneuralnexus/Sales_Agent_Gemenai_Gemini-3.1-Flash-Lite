@@ -11,12 +11,12 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("📄 Gemini Flash-Lite RAG Chatbot")
+st.title("📄 Gemini RAG Chatbot")
 
-st.write("Upload PDF and ask questions.")
+st.write("Upload PDF and ask questions from your document.")
 
 uploaded_file = st.file_uploader(
-    "Upload PDF File",
+    "Upload PDF",
     type=["pdf"]
 )
 
@@ -34,29 +34,29 @@ if uploaded_file:
 
     st.success("PDF Uploaded Successfully")
 
-    if st.button("Create Knowledge Base"):
+    if st.button("Create Vector Store"):
 
-        with st.spinner("Creating Vector Database..."):
+        with st.spinner("Processing PDF..."):
 
-            message = create_vector_store(file_path)
+            msg = create_vector_store(file_path)
 
-        st.success(message)
+        st.success(msg)
 
 st.divider()
 
 question = st.text_input(
-    "Ask Question From PDF"
+    "Ask Question"
 )
 
-if st.button("Generate Answer"):
+if st.button("Get Answer"):
 
     if question.strip() == "":
-        st.warning("Please enter question")
+        st.warning("Please enter a question")
     else:
 
-        with st.spinner("Thinking..."):
+        with st.spinner("Generating Answer..."):
 
-            answer = ask_question(question)
+            response = ask_question(question)
 
         st.subheader("Answer")
-        st.write(answer)
+        st.write(response)

@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-
 from langchain_community.vectorstores import FAISS
 
 from langchain_google_genai import (
@@ -18,7 +17,8 @@ load_dotenv()
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 embeddings = GoogleGenerativeAIEmbeddings(
-    model="models/embedding-001"
+    model="models/embedding-001",
+    google_api_key=GOOGLE_API_KEY
 )
 
 llm = ChatGoogleGenerativeAI(
@@ -30,7 +30,6 @@ llm = ChatGoogleGenerativeAI(
 def create_vector_store(pdf_path):
 
     loader = PyPDFLoader(pdf_path)
-
     documents = loader.load()
 
     text_splitter = RecursiveCharacterTextSplitter(
@@ -47,7 +46,7 @@ def create_vector_store(pdf_path):
 
     vector_store.save_local("faiss_index")
 
-    return "FAISS Vector Store Created"
+    return "Vector Database Created Successfully"
 
 
 def ask_question(question):

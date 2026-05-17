@@ -1,18 +1,11 @@
-# Gemini Flash-Lite RAG Chatbot
+# Gemini RAG Chatbot
 
-A simple Retrieval-Augmented Generation (RAG) chatbot using:
+Simple RAG chatbot using:
 
-- Gemini API
+- Gemini 1.5 Flash
 - LangChain
 - FAISS
 - Streamlit
-
-## Features
-
-- PDF Upload
-- Vector Search
-- Question Answering
-- Streamlit Frontend
 
 ## Installation
 
@@ -26,7 +19,7 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-## Add API Key
+## Environment Variable
 
 Create `.env`
 
